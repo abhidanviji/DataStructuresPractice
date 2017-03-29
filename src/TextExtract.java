@@ -5,42 +5,55 @@ import java.util.Map.Entry;
 public class TextExtract {
 
 	public static void main(String[] args) {
-		int count = 0,ind=1;
+		int count = 0, ind = 1;
+
 		HashMap<String, Integer> map = new HashMap<>();
-		String s = "natural language processing|Natural Language Processing| three additional|program|programmatic computing plus the combination of three additional capabilities|\"Combination\"";
+		String s = "\"watson Represents\"|watson represents|Watson represents a first step into cognitive systems -- a new era of computing.|first step into Cognitive|Cognitive Systems - a new era of computing,|what does watson represent";
 		String[] spl = s.split("\\|");
-		
-		for (int i = 0; i < spl.length - 1; i++) {
-			String[] chk = spl[i].split(" ");
-			if(chk.length==1){
-				String[] achk = spl[i+1].split(" ");
-				for(int j=0;j<achk.length;j++){
-					if(spl[i].equalsIgnoreCase(achk[i]))
-						count++;
+		String spl1[] = spl.clone();
+		for (int main = 0; main < spl.length; main++) {
+			for (int i = 0; i < spl.length; i++) {
+				if (i != main) {
+					spl[i] = spl[i].replace("\"", "");
+					spl[i] = spl[i].replace("--*", "-");
+					spl[main] = spl[main].replace("\"", "");
+					spl[main] = spl[main].replace("--*", "-");
+					String[] chk = spl[main].split(" ");
+					if (chk.length == 1) {
+						String[] achk = spl[i].split(" ");
+						for (int j = 0; j < achk.length; j++) {
+							if (spl[i].equalsIgnoreCase(achk[j]))
+								count++;
+						}
+						if (count == 0) {
+							map.put(spl1[main], ind);
+							ind++;
+						}
+						System.out.println(spl[main]);
+					}
+					if (spl[main].toLowerCase().contains(spl[i].toLowerCase())) {
+						System.out.println("Print - " + main + "-" + i + "-" + spl[main].toLowerCase() + "=="
+								+ spl[i].toLowerCase());
+						map.remove(spl1[i], ind);
+						map.put(spl1[main], ind);
+						ind++;
+					} else if (spl[i].toLowerCase().contains(spl[main].toLowerCase())) {
+						System.out.println("Print1 - " + main + "-" + i + "-" + spl[i].toLowerCase() + "=="
+								+ spl[main].toLowerCase());
+						map.remove(spl1[main], ind);
+						map.put(spl1[i], ind);
+						ind++;
+					}
+
+					count = 0;
 				}
-				if(count == 0){
-					map.put(spl[i], ind);
-					ind++;
-				}
-				System.out.println(spl[i]);
 			}
-			if (spl[i].toLowerCase().contains(spl[i + 1].toLowerCase())) {
-				map.remove(spl[i+1],ind);
-				map.put(spl[i], ind);
-				ind++;
-			} else if (spl[i+1].toLowerCase().contains(spl[i].toLowerCase())) {
-				map.remove(spl[i],ind);
-				map.put(spl[i+1], ind);
-				ind++;
-			}
-			
-			count =0;
 		}
-		
+
 		for (Entry<String, Integer> entry : map.entrySet()) {
-		    String key = entry.getKey().toString();
-		    Integer value = entry.getValue();
-		    System.out.println("key, " + key + " value " + value);
+			String key = entry.getKey().toString();
+			Integer value = entry.getValue();
+			System.out.println("key, " + key + " value " + value);
 		}
 
 	}
