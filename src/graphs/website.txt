@@ -1,0 +1,15 @@
+directed
+7
+Frank
+Mary
+Sam
+Bob
+Katie
+Pete
+John
+Frank Mary
+Mary Sam
+Mary Bob
+Sam Katie
+Sam Pete
+Bob John
