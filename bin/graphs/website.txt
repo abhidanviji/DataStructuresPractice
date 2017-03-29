@@ -1,5 +1,5 @@
 directed
-7
+8
 Frank
 Mary
 Sam
@@ -7,9 +7,11 @@ Bob
 Katie
 Pete
 John
+Nancy
+Sam Pete
+Pete Nancy
+Sam Katie
+Mary Bob
 Frank Mary
 Mary Sam
-Mary Bob
-Sam Katie
-Sam Pete
 Bob John

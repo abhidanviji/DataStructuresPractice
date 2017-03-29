@@ -86,7 +86,7 @@ public class Graph {
         for (int v=0; v < adjLists.length; v++) {
         	for (Neighbor nbr=adjLists[v].adjList; nbr != null;nbr=nbr.next) {
         		fin = fin+adjLists[nbr.vertexNum].name+",";
-        		if(adjLists[nbr.vertexNum].name.equals("Bob")){
+        		if(adjLists[nbr.vertexNum].name.equals("Pete")){
         			flag = true;
         		}
         	}
