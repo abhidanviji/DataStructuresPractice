@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 class LCM{
-    public static int getLCM1(int ... a){
+    public static ArrayList getLCM1(int[] a,int len){
         int lcm=0;
+        ArrayList al = new ArrayList<>();
         boolean found;
-        for(int i=1; ; i++){
+        for(int i=1; i<len; i++){
             found=true;
             for(int x=0; x<a.length;x++){
                 if(i%a[x]!=0){
@@ -11,37 +14,16 @@ class LCM{
                 }
             }
             if(found){
-                lcm=i;
-                break;
+               al.add(i);
             }
         }
-        return lcm;
+        return al;
     }
-    public static int getLCM2(int ... a){
-        int lcm, max;
-        boolean found;
-        max=a[0];
-        for(int i=0; i<a.length; i++){
-            if(a[i]>max) max=a[i];
-        }
-        for(int i=max; ; i+=max){
-            found=true;
-            for(int x=0; x<a.length;x++){
-                if(i%a[x]!=0){
-                    found=false;
-                    break;
-                }
-            }
-            if(found){
-                lcm=i;
-                break;
-            }
-        }
-        return lcm;
-    }
+    
+     
     public static void main(String[] args){
         int a[]={2,4};
-        System.out.println(getLCM1(a));
-        System.out.println(getLCM2(a));
+        int b[] ={16,32,96};
+        System.out.println(getLCM1(a,b[b.length-1]));
     }
 }
