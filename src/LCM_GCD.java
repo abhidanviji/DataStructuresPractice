@@ -4,7 +4,7 @@ class LCM_GCD {
 	public static ArrayList<Integer> getLCM(int[] a, int len) {
 		ArrayList<Integer> lcm = new ArrayList<>();
 		boolean found;
-		for (int i = 1; i < len; i++) {
+		for (int i = 1; i <= len; i++) {
 			found = true;
 			for (int x = 0; x < a.length; x++) {
 				if (i % a[x] != 0) {
